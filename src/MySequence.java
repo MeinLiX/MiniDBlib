@@ -119,7 +119,7 @@ public class MySequence {
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (var i : dataTypes)
-            res.append(i).append(" | ");
+            res.append(i).append(" ; ");
 
         return res.delete(res.length() - 2, res.length()).toString().trim();
     }
@@ -128,7 +128,7 @@ public class MySequence {
         if (!debug) return toString();
         StringBuilder res = new StringBuilder();
         for (var i : dataTypes)
-            res.append(i.toString(debug)).append(" | ");
+            res.append(i.toString(debug)).append(" ; ");
 
         return res.delete(res.length() - 2, res.length()).toString().trim();
     }

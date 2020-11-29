@@ -41,8 +41,8 @@ public class Main {
         engine.ReadFileAndInitialDataSet(InputFile); //Викидає Exception у випадку не корректного файлу.
 
         //engine.PrintSequence(true);
-        engine.PrintData();
-        engine.RemoveItemsFromDataSet("Вид_Занять","L");
-        engine.PrintData();
+        engine.PrintData(); //виводить всі данні зчитані з файлу.
+        engine.RemoveItemsFromDataSet("Вид_Занять","pr"); //видаляє всі данні рядку, якщо поле "Name" містить в собі переданий "value"
+        engine.saveData(new File("OutData.txt"));
     }
 }

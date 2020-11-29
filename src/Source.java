@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -25,7 +26,7 @@ public class Source {
     public boolean IsCorrectFileByProp(File file) throws Exception { //TODO need?
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
-            MySequence tempData = new MySequence(prop,false);
+            MySequence tempData = new MySequence(prop, false);
             for (String word : scanner.nextLine().split(splitRegexp)) {
                 if (Objects.equals(word, "")) continue;
                 if (word.startsWith("//")) break;
@@ -58,12 +59,31 @@ public class Source {
         return avg;
     }
 
-    public void PrintData() {
+    public void saveData(File file) throws Exception {
+        if (prop == null || prop.getSequenceArr().size() < 1 || dataSet.size() < 1)
+            throw new Exception("Please invoke InitialProp or(and) ReadFileAndInitialDataSet");
+        FileWriter FWrt = new FileWriter(file);
         for (MySequence mySequence : dataSet) {
             for (int j = 0; j < prop.getSequenceSize(); j++) {
                 String toPrint = mySequence.getValueFormat(j, GetAVG(j));
                 if (j + 1 < prop.getSequenceSize())
-                    toPrint = toPrint + "|";
+                    toPrint = toPrint + ";";
+
+                FWrt.write(toPrint);
+            }
+            FWrt.write("\n");
+        }
+        FWrt.close();
+    }
+
+    public void PrintData() throws Exception {
+        if (prop == null || prop.getSequenceArr().size() < 1 || dataSet.size() < 1)
+            throw new Exception("Please invoke InitialProp or(and) ReadFileAndInitialDataSet");
+        for (MySequence mySequence : dataSet) {
+            for (int j = 0; j < prop.getSequenceSize(); j++) {
+                String toPrint = mySequence.getValueFormat(j, GetAVG(j));
+                if (j + 1 < prop.getSequenceSize())
+                    toPrint = toPrint + ";";
 
                 System.out.print(toPrint);
             }
@@ -108,7 +128,6 @@ public class Source {
                 count++;
                 dataSet.remove(i);
             }
-
         }
         return count;
     }
