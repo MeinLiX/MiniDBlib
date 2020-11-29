@@ -10,7 +10,7 @@ public class Main {
 
     public void Start_Program(String Prop, File ReadFile) throws Exception {
         engine.InitialProp(Prop);
-        engine.ReadFileAndInitialDataSet(ReadFile);
+        engine.readFileAndInitialDataSet(ReadFile);
     }
 
     static {
@@ -37,12 +37,12 @@ public class Main {
         File InputFile = new File("InputData.txt");
 
         engine.InitialProp(PropExample);
-        //if (engine.IsCorrectFileByProp(InputFile)) // Перевірка на корректність файлу (Завдання 3) не потрібна, так як ReadFileAndInitialDataSet перевіряє корректність файлу, при його обробці.
-        engine.ReadFileAndInitialDataSet(InputFile); //Викидає Exception у випадку не корректного файлу.
+        //if (engine.isCorrectFileByProp(InputFile)) // Перевірка на корректність файлу (Завдання 3) не потрібна, так як readFileAndInitialDataSet перевіряє корректність файлу, при його обробці.
+        engine.readFileAndInitialDataSet(InputFile); //Викидає Exception у випадку не корректного файлу.
 
-        //engine.PrintSequence(true);
-        engine.PrintData(); //виводить всі данні зчитані з файлу.
-        engine.RemoveItemsFromDataSet("Вид_Занять","pr"); //видаляє всі данні рядку, якщо поле "Name" містить в собі переданий "value"
+        //engine.printSequence(true);
+        engine.printData(); //виводить всі данні зчитані з файлу.
+        engine.removeItemsFromDataSet("Вид_Занять","pr"); //видаляє всі данні рядку, якщо поле "Name" містить в собі переданий "value"
         engine.saveData(new File("OutData.txt"));
     }
 }

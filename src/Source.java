@@ -23,7 +23,7 @@ public class Source {
         scanner.close();
     }
 
-    public boolean IsCorrectFileByProp(File file) throws Exception { //TODO need?
+    public boolean isCorrectFileByProp(File file) throws Exception { //TODO need?
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             MySequence tempData = new MySequence(prop, false);
@@ -42,15 +42,15 @@ public class Source {
         return true;
     }
 
-    public void PrintSequence() {
-        PrintSequence(false);
+    public void printSequence() {
+        printSequence(false);
     }
 
-    public void PrintSequence(boolean WithRegexp) {
+    public void printSequence(boolean WithRegexp) {
         System.out.println(prop.toString(WithRegexp));
     }
 
-    private int GetAVG(int idx) {
+    private int getAVG(int idx) {
         int avg = 0;
         for (MySequence word : dataSet) {
             int length = word.getValueFormat(idx, 1).length();
@@ -61,11 +61,11 @@ public class Source {
 
     public void saveData(File file) throws Exception {
         if (prop == null || prop.getSequenceArr().size() < 1 || dataSet.size() < 1)
-            throw new Exception("Please invoke InitialProp or(and) ReadFileAndInitialDataSet");
+            throw new Exception("Please invoke InitialProp or(and) readFileAndInitialDataSet");
         FileWriter FWrt = new FileWriter(file);
         for (MySequence mySequence : dataSet) {
             for (int j = 0; j < prop.getSequenceSize(); j++) {
-                String toPrint = mySequence.getValueFormat(j, GetAVG(j));
+                String toPrint = mySequence.getValueFormat(j, getAVG(j));
                 if (j + 1 < prop.getSequenceSize())
                     toPrint = toPrint + ";";
 
@@ -76,12 +76,12 @@ public class Source {
         FWrt.close();
     }
 
-    public void PrintData() throws Exception {
+    public void printData() throws Exception {
         if (prop == null || prop.getSequenceArr().size() < 1 || dataSet.size() < 1)
-            throw new Exception("Please invoke InitialProp or(and) ReadFileAndInitialDataSet");
+            throw new Exception("Please invoke InitialProp or(and) readFileAndInitialDataSet");
         for (MySequence mySequence : dataSet) {
             for (int j = 0; j < prop.getSequenceSize(); j++) {
-                String toPrint = mySequence.getValueFormat(j, GetAVG(j));
+                String toPrint = mySequence.getValueFormat(j, getAVG(j));
                 if (j + 1 < prop.getSequenceSize())
                     toPrint = toPrint + ";";
 
@@ -93,7 +93,7 @@ public class Source {
         }
     }
 
-    public void ReadFileAndInitialDataSet(File file) throws Exception {
+    public void readFileAndInitialDataSet(File file) throws Exception {
         if (prop == null || prop.getSequenceArr().size() < 1)
             throw new Exception("Please invoke InitialProp.");
 
@@ -121,7 +121,7 @@ public class Source {
         scanner.close();
     }
 
-    public int RemoveItemsFromDataSet(String Name, String value) {
+    public int removeItemsFromDataSet(String Name, String value) {
         int count = 0;
         for (int i = 0; i < dataSet.size(); i++) {
             if (dataSet.get(i).getValue(Name).equals(value)) {
