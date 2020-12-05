@@ -50,7 +50,7 @@ public class MySequence {
     public boolean setValue(String value) throws Exception {
         var idx = getSequenceLastTypeIndex();
         if (idx == -1)
-            return false; //new Exception("Input file is not correct. All elements already initialized");
+            return false;
 
         return setValue(value, getSequenceLastTypeIndex());
     }
@@ -125,7 +125,6 @@ public class MySequence {
     }
 
     public String toString(boolean debug) {
-        if (!debug) return toString();
         StringBuilder res = new StringBuilder();
         for (var i : dataTypes)
             res.append(i.toString(debug)).append(" ; ");

@@ -8,7 +8,7 @@ class MyDataLex {
     private final String token; //regexp
     private final Function<String, Boolean> method;
 
-    public MyDataLex(MyDataLex MDL){
+    public MyDataLex(MyDataLex MDL) {
         name = MDL.name;
         value = MDL.value;
         token = MDL.token;
@@ -31,9 +31,9 @@ class MyDataLex {
         this(_name, _method, null, _value);
     }
 
-    MyDataLex(String _name, Function<String, Boolean> _method, String pattern, String _value) { //this::NameMethod
-        name = _name !=null?new String(_name):null;
-        token = pattern!=null?new String(pattern):null;
+    MyDataLex(String _name, Function<String, Boolean> _method, String pattern, String _value) {
+        name = _name != null ? new String(_name) : null;
+        token = pattern != null ? new String(pattern) : null;
         method = _method;
         setValue(_value);
     }
@@ -55,7 +55,7 @@ class MyDataLex {
     }
 
     public boolean setValue(String _value) {
-        if (value != null || _value==null)
+        if (value != null || _value == null)
             return false;
         if (token != null && Pattern.matches(token, _value)) {
             value = new String(_value);
@@ -86,7 +86,9 @@ class MyDataLex {
     }
 
     public String toString(boolean debug) {
-        if (!debug) return toString();
+        if (!debug)
+            return getName();
+
         return getName() + "{" + token + "}";
     }
 }
